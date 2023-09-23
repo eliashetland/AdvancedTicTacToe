@@ -20,12 +20,13 @@ body{
     display: flex;
   justify-content: center;
   align-items: center;
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 .sizable {
     aspect-ratio: auto 1/ 1;
-    width: 500px;
+    width: 90%;
+    max-width: 600px;
 }
 
 .outerChild{
@@ -55,6 +56,8 @@ body{
     display: grid;
     height: 100%;
     width: 100%;
+    aspect-ratio: 1/1;
+    height: fit-content;
 
     grid-column-gap: 15px;
     grid-row-gap: 15px;
@@ -71,14 +74,13 @@ body{
 
 .textbox{
     display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: xx-large;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
 }
 #header{
     display: grid;
     height: 50px;
-    font-size: xx-large;
     grid-template-columns: repeat(2, 1fr);
     background-color:white;
     border: 2px solid black;
