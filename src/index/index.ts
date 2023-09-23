@@ -4,6 +4,8 @@ import { Tictac } from "./tictac";
 
 const mainGrid = geID<HTMLDivElement>("mainGrid");
 const currentPlayerDiv = geID<HTMLDivElement>("currentPlayer");
+const nextPlayerDiv = geID<HTMLDivElement>("nextPlayerDiv");
+
 
 //Create 9x9 grid;
 
@@ -103,8 +105,15 @@ function victory(winner: string) {
         }
         
     }
+    //remove title/ dusplay winner
+    nextPlayerDiv.innerText = `${winner} won`;
 
-
-    console.log(`${winner} won`);
+    const reloadBtn = document.createElement("button");
+    reloadBtn.textContent = "New Round";
+    reloadBtn.addEventListener("click", ()=>{
+        window.location.reload();
+    })
+    currentPlayerDiv.innerText = "";
+    currentPlayerDiv.appendChild(reloadBtn);
 }
 

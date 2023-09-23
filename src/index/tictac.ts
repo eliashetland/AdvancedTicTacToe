@@ -56,9 +56,6 @@ export class Tictac {
     }
 
     private nextArea(id: ICoordinate){
-        //TODO: remove this
-        
-
         if (this.bigGrid[id.y]) {
             return(-1);
         }else{
