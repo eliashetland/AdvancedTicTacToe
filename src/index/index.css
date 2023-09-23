@@ -1,0 +1,86 @@
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(72, 139, 116);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+
+.innerChild{
+    background-color: white;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+}
+
+.sizable {
+    aspect-ratio: auto 1/ 1;
+    width: 500px;
+}
+
+.outerChild{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+}
+.outerChildOneElement{
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+    background-color: rgb(69, 201, 211);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+
+}
+
+#mainGrid{
+    display: grid;
+    height: 100%;
+    width: 100%;
+
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    background-color:black;
+    
+}
+
+.available{
+    background-color: rgb(189, 209, 253);
+}
+
+.textbox{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+}
+#header{
+    display: grid;
+    height: 50px;
+    font-size: xx-large;
+    grid-template-columns: repeat(2, 1fr);
+    background-color:white;
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
