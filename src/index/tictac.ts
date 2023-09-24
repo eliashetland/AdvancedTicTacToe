@@ -2,7 +2,7 @@ import { ICoordinate } from "./ICoordinate";
 
 
 export class Tictac {
-    private winCombos: number[][] = [
+    private static readonly winCombos: number[][] = [
         [0,1,2],
         [3,4,5],
         [6,7,8],
@@ -15,7 +15,7 @@ export class Tictac {
 
     private grid: string[][] = [];
     private bigGrid: string[] = [];
-    private currentPlayer: number = 0;
+    private playerbool: boolean = false;
     private players: string[] = ["X", "O"];
     private currentArea: number = -1;
 
@@ -31,18 +31,18 @@ export class Tictac {
         if (!this.validMove(id)) {
             return false;
         }
-        this.grid[id.x][id.y] = this.players[this.currentPlayer];
-        this.currentPlayer = ((this.currentPlayer +1) %2);
+        this.grid[id.x][id.y] = this.getCurrentPlayer();
+        this.playerbool = !this.playerbool;
         this.currentArea = this.nextArea(id);
         return true; 
     }
     
     public getLastPlayer(): string{
-        return this.players[(this.currentPlayer +1) %2]
+        return this.players[this.playerbool?0:1]
     }
 
     public getCurrentPlayer(): string{
-        return this.players[this.currentPlayer];
+        return this.players[this.playerbool?1:0];
     }
 
     public getCurrentArea(): number {
@@ -62,7 +62,7 @@ export class Tictac {
     }
 
     public checkBigGrid(index: number):boolean{
-        return (this.bigGrid[index] != undefined)
+        return (this.bigGrid[index] != undefined);
     }
 
     public checkSmallWin(id: ICoordinate): boolean{
@@ -70,7 +70,7 @@ export class Tictac {
             return false;
         }
         this.bigGrid[id.x] = this.getLastPlayer();
-        return false;
+        return true;
     }
     
     public checkbigWin(): boolean{
@@ -78,11 +78,11 @@ export class Tictac {
     }
 
     private checkWin(board: string[], player: string){
-        for(let x = 0; x< this.winCombos.length; x++){
+        for(let x = 0; x< Tictac.winCombos.length; x++){
             if (
-                board[this.winCombos[x][0]] == player &&
-                board[this.winCombos[x][1]] == player &&
-                board[this.winCombos[x][2]] == player
+                board[Tictac.winCombos[x][0]] == player &&
+                board[Tictac.winCombos[x][1]] == player &&
+                board[Tictac.winCombos[x][2]] == player
             ) { return true}
         }
         return false;
