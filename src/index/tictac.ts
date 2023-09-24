@@ -20,23 +20,21 @@ export class Tictac {
     private currentArea: number = -1;
 
     constructor() {
+        //creates 2d Array 9x9 filled with undefined values
         this.grid = [...Array(9)].map(()=>Array(9));
+        //creates Array of size 9 with undefined values
         this.bigGrid = [...Array(9)];
     }
      
-    public getGrid() : string[][] {
-        return this.grid;
-    }
 
     public nextMove(id: ICoordinate): boolean {
-        if(this.validMove(id)){
-            this.grid[id.x][id.y] = this.players[this.currentPlayer];
-            this.currentPlayer = ((this.currentPlayer +1) %2);
-            this.currentArea = this.nextArea(id);
-
-            return true;
-        } 
-        return false   
+        if (!this.validMove(id)) {
+            return false;
+        }
+        this.grid[id.x][id.y] = this.players[this.currentPlayer];
+        this.currentPlayer = ((this.currentPlayer +1) %2);
+        this.currentArea = this.nextArea(id);
+        return true; 
     }
     
     public getLastPlayer(): string{
@@ -64,26 +62,19 @@ export class Tictac {
     }
 
     public checkBigGrid(index: number):boolean{
-        if (this.bigGrid[index] == undefined) {
-            return false
-        }
-        return true;
+        return (this.bigGrid[index] != undefined)
     }
 
     public checkSmallWin(id: ICoordinate): boolean{
-        if (this.checkWin(this.grid[id.x], this.getLastPlayer())) {
-            this.bigGrid[id.x] = this.getLastPlayer();
-            return true;
+        if (!this.checkWin(this.grid[id.x], this.getLastPlayer())) {
+            return false;
         }
+        this.bigGrid[id.x] = this.getLastPlayer();
         return false;
     }
     
     public checkbigWin(): boolean{
-        if (this.checkWin(this.bigGrid, this.getLastPlayer())) {
-            
-            return true;
-        }
-        return false;
+        return (this.checkWin(this.bigGrid, this.getLastPlayer())); 
     }
 
     private checkWin(board: string[], player: string){
