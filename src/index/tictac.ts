@@ -49,12 +49,12 @@ export class Tictac {
         return this.currentArea;
     }
 
-    private validMove(id: ICoordinate) : boolean{
+    private validMove(id: ICoordinate) : boolean{ 
         return((this.currentArea == id.x || this.currentArea == -1) && this.grid[id.x][id.y] == undefined );
     }
 
     private nextArea(id: ICoordinate){
-        if (this.bigGrid[id.y]) {
+        if (this.bigGrid[id.y] || this.checkSmallWin(id)) {
             return(-1);
         }else{
             return(id.y);
