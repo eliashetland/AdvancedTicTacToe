@@ -54,11 +54,22 @@ export class Tictac {
     }
 
     private nextArea(id: ICoordinate){
-        if (this.bigGrid[id.y] || this.checkSmallWin(id)) {
+        this.checkSmallWin(id)
+
+        if (this.bigGrid[id.y] || this.checkFullGrid(id)) {
             return(-1);
         }else{
             return(id.y);
         }
+    }
+
+    public checkFullGrid(id: ICoordinate): boolean{
+        for (let i = 0; i < 9; i++) {
+            if (this.grid[id.y][i] == undefined) {
+                return false;
+            }  
+        }
+        return true;
     }
 
     public checkBigGrid(index: number):boolean{
